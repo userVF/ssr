@@ -7,7 +7,6 @@ This is example of server-side rendering with minimal dependencies.
 - Node.js
 
 ## Code setup
-
 Install dependencies
 ```bash
 npm ci
@@ -16,6 +15,7 @@ Build bundles
 ```bash
 npm run build
 ```
+
 ## Live example
 Run application server
 ```bash
@@ -28,4 +28,14 @@ node ./server/static-server.js
 Open in a browser
 ```bash
 http://localhost:3000
+```
+
+## Development
+Run application server
+```bash
+node ./server/app-server.js
+```
+Run development server
+```bash
+npm run dev
 ```
