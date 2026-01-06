@@ -30,7 +30,6 @@
   const view = computed(() => views[router.view])
 
   const onPopstate = () => {
-    // console.log(`App Mount onPopstate: ${location.pathname}`)
     location.reload()
   }
   onMounted(() => {
