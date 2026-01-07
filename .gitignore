@@ -4,5 +4,6 @@ build/client/assets/*
 build/client/html/*
 !build/client/html/.gitkeep
 build/server/*
+!build/server/.gitkeep
 node_modules
 
