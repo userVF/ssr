@@ -1,7 +1,7 @@
 This is example of server-side rendering with minimal dependencies.
 
 ## How it works 
-<img width="1058" height="595" alt="ssr" src="https://github.com/user-attachments/assets/3a3008d2-1e50-40ed-8bb4-db2cbc0901fc" />
+<img width="1058" height="595" alt="ssr" src="https://github.com/user-attachments/assets/86b6cca4-83a4-49c0-a1bb-12f600701bea" />
 
 ## Prerequisites
 - Node.js
