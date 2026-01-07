@@ -24,5 +24,5 @@ export function createApp(ctx) {
     console.log('Vue app.errorHandler ', err, instance, info)
   }
 
-  return { app }
+  return app
 }
