@@ -5,9 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "vite --mode dev --open html/dev-index.html",
-    "build:server": "vite build --mode local-prod --outDir build/server --ssr client/app/entry-server.js",
-    "build:client": "vite build --mode local-prod --outDir build/client",
+    "dev": "vite --open html/dev-index.html",
+    "build:server": "vite build --outDir build/server --ssr client/app/entry-server.js",
+    "build:client": "vite build --outDir build/client",
     "build": "npm run build:server && npm run build:client"
   },
   "dependencies": {

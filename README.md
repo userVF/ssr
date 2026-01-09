@@ -1,4 +1,4 @@
-This is example of server-side rendering with minimal dependencies.
+A simple server-side rendering example built with Vue and Fastify.
 
 ## How it works 
 <img width="1058" height="595" alt="ssr" src="https://github.com/user-attachments/assets/86b6cca4-83a4-49c0-a1bb-12f600701bea" />

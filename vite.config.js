@@ -4,10 +4,10 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig(({ command, mode }) => {
 
-  const env  = loadEnv(mode, process.cwd(), '')
+  const env = loadEnv(mode, process.cwd(), '')
 
   const config = {    
-    base: env.VITE_STATIC_ORIGIN,
+    base: env.STATIC_ORIGIN,
     plugins: [ 
       vue(), 
     ],
@@ -36,7 +36,7 @@ export default defineConfig(({ command, mode }) => {
     }
     config['server']['proxy'] = {
       '^/(ru|kz|en)/api/.*': {
-        target: env.VITE_APP_ORIGIN,
+        target: env.APP_ORIGIN,
       },
     }
   }
