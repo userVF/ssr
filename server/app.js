@@ -15,13 +15,8 @@ export async function build(opts = {}) {
   app.decorate('langs', { default: 'en', allowed: ['en', 'kz', 'ru'] })
 
   app.setErrorHandler(async (err, request, reply) => {
-    if (err.validation) {
-      reply.code(403)
-      return err.message
-    }
     request.log.error({ err })
     reply.code(err.statusCode || 500)
-
     return "I'm sorry, there was an error processing your request."
   })
 
