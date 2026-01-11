@@ -22,6 +22,12 @@ export default function(app, _opts, done) {
       .replace('!--title--', data['headData']['title'])
 			.replace('!--lang--', config['lang'])
       .replace('!--description--',  data['headData']['description'])
+      .replace('!--canonical--', `<link rel="canonical" href="${process.env.APP_ORIGIN}${config['path']}">`)
+      .replace('!--hreflangs--', 
+        `<link rel="alternate" hreflang="ru" href="${process.env.APP_ORIGIN}/ru${config['path'].substring(3)}">
+         <link rel="alternate" hreflang="kk" href="${process.env.APP_ORIGIN}/kz${config['path'].substring(3)}">
+         <link rel="alternate" hreflang="en" href="${process.env.APP_ORIGIN}/en${config['path'].substring(3)}">
+         <link rel="alternate" hreflang="x-default" href="${process.env.APP_ORIGIN}/en${config['path'].substring(3)}">`)
       .replace('!--csp--', 
         `<meta http-equiv="Content-Security-Policy" 
           content="default-src 'self' ${process.env.STATIC_ORIGIN} ;
