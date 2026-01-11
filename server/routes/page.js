@@ -38,8 +38,18 @@ export default function(app, _opts, done) {
     })  
   })
 
-  app.setNotFoundHandler((request, reply) => {
-    return reply.code(404).send()
+  app.get('/*', { config: { view: 'NotFound' } }, async (request, reply) => {
+    reply.code(404)
+    if (request.url.includes('api')) {
+      return reply.send()
+    }
+    const { header, notFound, footer } = app.data.get(
+      request.params.lang, [ 'header', 'notFound', 'footer' ]
+    )
+    return await app.renderPage({
+      config: app.routeConfig,
+      data: { header, ...notFound, footer }
+    })
   })
 
   done()

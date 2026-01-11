@@ -12,8 +12,8 @@ export async function build(opts = {}) {
   app.register(api, { prefix: '/:lang/api' })
 
   app.decorate('routeConfig', { lang: '', view: '', params: '', path: '' })
-  app.decorate('langs', { default: 'en', allowed: ['en', 'kz', 'ru'] })
-
+  app.decorate('langs', { default: 'en', allowed: ['en', 'kz', 'ru'] })  
+  
   app.setErrorHandler(async (err, request, reply) => {
     request.log.error({ err })
     reply.code(err.statusCode || 500)

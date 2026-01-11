@@ -22,11 +22,12 @@
   import Home from '@/pages/home/view/Home.vue'
   import About from '@/pages/about/view/About.vue'
   import Contacts from '@/pages/contacts/view/Contacts.vue'  
+  import NotFound from '@/pages/not-found/view/NotFound.vue'
   import Footer from '@/footer/view/Footer.vue'
 
   const router = inject('router')
 
-  const views = { Home, About, Contacts }
+  const views = { Home, About, Contacts, NotFound }
   const view = computed(() => views[router.view])
 
   const onPopstate = () => {

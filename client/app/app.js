@@ -18,6 +18,7 @@ export function createApp(ctx) {
   app.provide('home', createHome(ctx.data?.homeData))
   app.provide('about', createAbout(ctx.data?.aboutData))  
   app.provide('contacts', createContacts(ctx.data?.contactsData))
+  app.provide('notFound', ctx.data?.notFoundData)
   app.provide('footer', ctx.data.footer)
 
   app.config.errorHandler = (err, instance, info) => {

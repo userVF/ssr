@@ -33,6 +33,13 @@ export default {
       },
       contactsData: 'Contacts page',
     },
+    notFound: {
+      headData: {
+        title: 'SSR | Not found',
+        description: 'SSR - Not found description'
+      },
+      notFoundData: 'Page not found'
+    },
     footer: {
       text: 'SSR',
     },
@@ -71,6 +78,13 @@ export default {
       },
       contactsData: 'Байланыстар',
     },
+    notFound: {
+      headData: {
+        title: 'SSR | Бет табылмады',
+        description: 'SSR - Бет табылмады'
+      },
+      notFoundData: 'Бет табылмады'
+    },
     footer: {
       text: 'SSR',
     },
@@ -108,6 +122,13 @@ export default {
         description: 'SSR - Описание страницы Контакты'
       },
       contactsData: 'Страница "Контакты"',
+    },
+    notFound: {
+      headData: {
+        title: 'SSR | Страница не найдена',
+        description: 'SSR - Страница не найдена'
+      },
+      notFoundData: 'Страница не найдена'
     },
     footer: {
       text: 'SSR',

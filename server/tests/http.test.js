@@ -34,3 +34,21 @@ test('Home API', async () => {
   assert.strictEqual(response.statusCode, 200)
   assert.ok(response.headers['content-type'].includes('application/json'))
 })
+
+test('Not found page', async () => {
+  const app = await build()
+  const response = await app.inject({
+    method: 'GET',
+    url: `/${app.langs.default}/xxx`
+  })
+  assert.strictEqual(response.statusCode, 404)
+})
+
+test('Not found API', async () => {
+  const app = await build()
+  const response = await app.inject({
+    method: 'GET',
+    url: `/${app.langs.default}/api/xxx`
+  })
+  assert.strictEqual(response.statusCode, 404)
+})
