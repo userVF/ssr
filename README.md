@@ -1,4 +1,4 @@
-This is a simple server-side rendering example built with native Fastify routing and Vue components.
+This is server-side rendering example built with native Fastify routing and Vue components.
 
 ## How it works 
 <img width="1058" height="595" alt="ssr" src="https://github.com/user-attachments/assets/74022616-8292-48d3-822e-30f462b8eb4f" />
