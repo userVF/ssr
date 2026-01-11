@@ -18,6 +18,13 @@ export default function(app, _opts, done) {
 
     const appHtml = await renderAppHtml(ctx)
 
+    // const safeJson = JSON.stringify({ config, data })
+    // .replace(/</g, '\\u003c')
+    // .replace(/>/g, '\\u003e')
+    // .replace(/\u2028/g, '\\u2028')
+    // .replace(/\u2029/g, '\\u2029')
+
+
     let html = rawHtml
       .replace('!--title--', data['headData']['title'])
 			.replace('!--lang--', config['lang'])
@@ -37,7 +44,7 @@ export default function(app, _opts, done) {
       )
       .replace('!--state--', 
         `<script nonce="${nonceStr}">
-          window.__INIT_STATE__ = ${JSON.stringify({ config, data })}
+          window.__INIT_STATE__ = ${JSON.stringify({ config, data }).replace(/</g, '\\u003c').replace(/>/g, '\\u003e')}
         </script>`
       )
 			.replace('!--html--', appHtml)
