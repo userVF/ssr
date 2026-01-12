@@ -1,7 +1,7 @@
-This is server-side rendering example built with native Fastify routing and Vue.
+This is server-side rendering example built with Fastify routing and Vue.
 
 ## How it works 
-<img width="1058" height="595" alt="ssr" src="https://github.com/user-attachments/assets/74022616-8292-48d3-822e-30f462b8eb4f" />
+<img width="1058" height="595" alt="ssr" src="https://github.com/user-attachments/assets/d47cfba0-886d-4b37-bb94-03fad78a7f28" />
 
 ## Prerequisites
 - Node.js
