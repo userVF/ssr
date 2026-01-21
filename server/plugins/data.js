@@ -1,8 +1,8 @@
 import fp from 'fastify-plugin'
 
-import data from '../etc/data.js'
+import data from '../utils/data.js'
 
-export default fp(function(app, opts, done) {
+export default fp(async function(app) {
   app.decorate('data', {
     get(lang, items) {
       const result = {}          
@@ -12,5 +12,4 @@ export default fp(function(app, opts, done) {
       return result
     }
   })
-  done()
 })

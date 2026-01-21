@@ -1,4 +1,4 @@
-import data from  '../../../server/etc/data.js'
+import data from  '../../../server/utils/data.js'
 
 const lang = 'en'
 
@@ -10,7 +10,7 @@ export default {
   },
   data: {
     header: data[lang]['header'],
-    // ...data[lang]['home'],
+    ...data[lang]['home'], // api/home call on mount is disabled
     footer: data[lang]['footer'],        
   },  
 }

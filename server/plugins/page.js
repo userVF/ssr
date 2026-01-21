@@ -1,21 +1,20 @@
 import fs from 'node:fs/promises'
-import { resolve } from 'node:path'
-import { join } from 'desm'
+import { join } from 'node:path'
 import crypto from 'node:crypto'
 
-import pageRoutes from '../routes/page.js'
+import fp from 'fastify-plugin'
+
 import { renderAppHtml } from '../../build/server/entry-server.js'
 
-const rawHtmlPath = resolve(join(import.meta.url, '..', '..', 'build/client/html/index.html'))
+const rawHtmlPath = join(import.meta.dirname, '..', '..', 'build/client/html/index.html')
 const rawHtml = await fs.readFile(rawHtmlPath, { encoding: 'utf8' })
 
-export default function(app, _opts, done) {  
+export default fp(async function(app) {
 
   app.decorate('renderPage', async ctx => {
 
     const { config, data } = ctx
     const nonceStr = crypto.randomUUID()
-
     const appHtml = await renderAppHtml(ctx)
 
     let html = rawHtml
@@ -30,7 +29,7 @@ export default function(app, _opts, done) {
          <link rel="alternate" hreflang="x-default" href="${process.env.APP_ORIGIN}/en${config['path'].substring(3)}">`)
       .replace('!--csp--', 
         `<meta http-equiv="Content-Security-Policy" 
-          content="default-src 'self' ${process.env.STATIC_ORIGIN} ;
+          content="default-src 'self' ${process.env.STATIC_ORIGIN} data: ;
           script-src 'nonce-${nonceStr}' ${process.env.STATIC_ORIGIN} ;
           style-src ${process.env.STATIC_ORIGIN} ;"
         >`
@@ -45,9 +44,4 @@ export default function(app, _opts, done) {
     return html
     
   })
-
-  app.register(pageRoutes, { prefix: '/:lang' })
-
-  done()
-
-}
+})

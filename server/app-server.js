@@ -1,9 +1,9 @@
 import { build } from './app.js'
 import closeWithGrace from 'close-with-grace'
 import dotenv from 'dotenv'
-import { join } from 'desm'
+import { join } from 'node:path'
 
-dotenv.config({path: join(import.meta.url, '..', '.env')})
+dotenv.config({path: join(import.meta.dirname, '..', '.env')})
 
 const opts = {
   logger: {

@@ -22,7 +22,7 @@ export function createApp(ctx) {
   app.provide('footer', ctx.data.footer)
 
   app.config.errorHandler = (err, instance, info) => {
-    console.log('Vue app.errorHandler ', err, instance, info)
+    console.log('Vue errorHandler: ', err, instance, info)
   }
 
   return app

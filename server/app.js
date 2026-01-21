@@ -1,18 +1,26 @@
 import fastify from 'fastify'
-
-import data from './plugins/data.js'
-import page from './plugins/page.js'
-import api from './routes/api.js'
+import autoLoad from '@fastify/autoload'
+import { join } from 'node:path'
 
 export async function build(opts = {}) {
-  const app = fastify(opts)
-  
-  app.register(data)
-  app.register(page)  
-  app.register(api, { prefix: '/:lang/api' })
 
-  app.decorate('routeConfig', { lang: '', view: '', params: '', path: '' })
-  app.decorate('langs', { default: 'en', allowed: ['en', 'kz', 'ru'] })  
+  const app = fastify(opts)  
+
+  app.register(autoLoad, {
+    dir: join(import.meta.dirname, 'plugins'),
+  })
+
+  app.register(autoLoad, {
+    dir: join(import.meta.dirname, 'routes/api'),
+    options: { prefix: '/:lang/api' },
+  })
+
+  app.register(autoLoad, {
+    dir: join(import.meta.dirname, 'routes/pages'),
+    autoHooks: true,
+    cascadeHooks: true,
+    dirNameRoutePrefix: false,
+  })
   
   app.setErrorHandler(async (err, request, reply) => {
     request.log.error({ err })

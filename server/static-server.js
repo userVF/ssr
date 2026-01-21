@@ -1,9 +1,9 @@
 import Fastify from 'fastify'
 import fastifyStatic from '@fastify/static'
 import dotenv from 'dotenv'
-import { join } from 'desm'
+import { join } from 'node:path'
 
-dotenv.config({path: join(import.meta.url, '..', '.env')})
+dotenv.config({path: join(import.meta.dirname, '..', '.env')})
 
 const app = Fastify({ 
   logger: {
@@ -20,8 +20,8 @@ const app = Fastify({
 
 app.register(fastifyStatic, {
   root: [
-    join(import.meta.url, '..', '/build/client'),
-    join(import.meta.url, '..', '/'),
+    join(import.meta.dirname, '..', '/build/client'),
+    join(import.meta.dirname, '..', '/'),
   ],
   setHeaders: res => {
     res.setHeader('Access-Control-Allow-Origin', '*')

@@ -5,50 +5,70 @@ import assert from 'node:assert/strict'
 
 import { build } from '../app.js'
 
-test('Lang redirect', async () => {
+test('Default lang redirect', async () => {
   const app = await build()
   const response = await app.inject({
     method: 'GET',
     url: '/'
   })
   assert.strictEqual(response.statusCode, 302)
-  assert.strictEqual(response.headers['location'], `/${app.langs.default}`)
+  assert.strictEqual(response.headers['location'], `/${app.langConfig.default}`)
 })
 
 test('Home page', async () => {
   const app = await build()
   const response = await app.inject({
     method: 'GET',
-    url: `/${app.langs.default}`
+    url: `/${app.langConfig.default}`
   })
   assert.strictEqual(response.statusCode, 200)
   assert.strictEqual(response.headers['content-type'], 'text/html')
 })
 
-test('Home API', async () => {
+test('About page', async () => {
   const app = await build()
   const response = await app.inject({
     method: 'GET',
-    url: `/${app.langs.default}/api/home`
+    url: `/${app.langConfig.default}/about`
   })
   assert.strictEqual(response.statusCode, 200)
-  assert.ok(response.headers['content-type'].includes('application/json'))
+  assert.strictEqual(response.headers['content-type'], 'text/html')
+})
+
+test('Wrong lang redirect', async () => {
+  const app = await build()
+  const response = await app.inject({
+    method: 'GET',
+    url: '/xxx/about'
+  })
+  assert.strictEqual(response.statusCode, 302)
+  assert.strictEqual(response.headers['location'], `/${app.langConfig.default}/about`)
 })
 
 test('Not found page', async () => {
   const app = await build()
   const response = await app.inject({
     method: 'GET',
-    url: `/${app.langs.default}/xxx`
+    url: `/${app.langConfig.default}/xxx`
   })
   assert.strictEqual(response.statusCode, 404)
+})
+
+test('Home API', async () => {
+  const app = await build()
+  const response = await app.inject({
+    method: 'GET',
+    url: `/${app.langConfig.default}/api/home`
+  })
+  assert.strictEqual(response.statusCode, 200)
+  assert.ok(response.headers['content-type'].includes('application/json'))
 })
 
 test('Not found API', async () => {
   const app = await build()
   const response = await app.inject({
     method: 'GET',
-    url: `/${app.langs.default}/api/xxx`
+    url: `/${app.langConfig.default}/api/xxx`
   })
   assert.strictEqual(response.statusCode, 404)
 })
