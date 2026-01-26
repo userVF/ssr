@@ -11,7 +11,7 @@ const rawHtml = await fs.readFile(rawHtmlPath, { encoding: 'utf8' })
 
 export default fp(async function(app) {
 
-  app.decorate('renderPage', async ctx => {
+  app.decorate('getHtml', async ctx => {
 
     const { config, data } = ctx
     const nonceStr = crypto.randomUUID()

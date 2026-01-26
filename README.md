@@ -29,9 +29,6 @@ Open in a browser
 ```bash
 http://localhost:3000
 ```
-Home page should looks like this:
-<img width="1058" height="592" alt="page" src="https://github.com/user-attachments/assets/3f80131a-99b9-4d2c-bd46-4315f230c6d0" />
-
 ## Development
 Run application server
 ```bash

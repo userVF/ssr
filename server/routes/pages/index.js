@@ -9,14 +9,15 @@ export default async function(app) {
   app.get('/:lang', {
     schema: langSchema,
     config: { view: 'Home' },
-  }, async (request, _reply) => {
+  }, async (request, reply) => {
     const { header, home, footer } = app.data.get(
       request.params.lang, [ 'header', 'home', 'footer' ]
     )
-    return await app.renderPage({
+    const html = await app.getHtml({
       config: app.routeConfig,
-      data: { header, ...home, footer },
+      data: { header, ...home, footer }
     })
+    return reply.type('text/html').send(html)
   })
 
   app.get('/:lang/*', {
@@ -26,10 +27,10 @@ export default async function(app) {
     const { header, notFound, footer } = app.data.get(      
       request.params.lang, [ 'header', 'notFound', 'footer' ]
     )
-    reply.code(404)
-    return await app.renderPage({
+    const html = await app.getHtml({
       config: app.routeConfig,
       data: { header, ...notFound, footer }
     })
+    return reply.code(404).type('text/html').send(html)
   })  
 }
